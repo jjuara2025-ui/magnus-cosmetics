@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAGNUS — Cosméticos de Lujo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e0be6a;
+      --gold-dim: #b8963e44;
+      --black: #0a0a0a;
+      --dark: #111;
+      --surface: #141414;
+      --text: #f5f0e8;
+      --text-muted: #f5f0e877;
+      --text-dim: #f5f0e844;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--black); color: var(--text); font-family: 'Playfair Display', serif; min-height: 100vh; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem; border-bottom: 0.5px solid var(--gold-dim);
+      position: sticky; top: 0; background: var(--black); z-index: 100;
+    }
+    .logo { font-size: 22px; font-weight: 700; letter-spacing: 8px; color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #c9a84c99; font-size: 11px; letter-spacing: 2px; text-decoration: none; font-family: sans-serif; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .cart-btn { position: relative; cursor: pointer; color: var(--gold); font-size: 22px; background: none; border: none; }
+    .cart-count {
+      position: absolute; top: -6px; right: -8px;
+      background: var(--gold); color: var(--black);
+      font-size: 9px; font-weight: 700; border-radius: 50%;
+      width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
+      font-family: sans-serif;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 480px; border-bottom: 0.5px solid var(--gold-dim);
+    }
+    .hero-left {
+      padding: 4rem 2.5rem; display: flex; flex-direction: column;
+      justify-content: center; border-right: 0.5px solid var(--gold-dim);
+    }
+    .eyebrow { font-size: 9px; letter-spacing: 5px; color: var(--gold); margin-bottom: 1.2rem; font-family: sans-serif; }
+    .hero-h { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero-h span { color: var(--gold); }
+    .hero-sub { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; font-family: 'Cormorant Garamond', serif; font-size: 16px; }
+    .btn-gold { background: var(--gold); color: var(--black); border: none; padding: .8rem 2rem; font-size: 10px; letter-spacing: 3px; cursor: pointer; font-family: 'Playfair Display', serif; font-weight: 700; transition: background .2s; }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline { background: transparent; color: var(--gold); border: 0.5px solid var(--gold); padding: .8rem 2rem; font-size: 10px; letter-spacing: 3px; cursor: pointer; font-family: 'Playfair Display', serif; margin-left: 1rem; transition: border-color .2s; }
+    .btn-outline:hover { border-color: var(--gold-light); }
+    .hero-right { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .hero-block {
+      display: flex; align-items: center; justify-content: center;
+      border: 0.5px solid var(--gold-dim); position: relative; min-height: 120px; font-size: 52px;
+    }
+    .hero-block:nth-child(1) { background: #1a1408; }
+    .hero-block:nth-child(2) { background: #110d0d; }
+    .hero-block:nth-child(3) { background: #0d1210; }
+    .hero-block:nth-child(4) { background: #13100d; }
+    .hero-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--gold); color: var(--black);
+      font-size: 8px; letter-spacing: 2px; padding: 3px 8px;
+      font-family: sans-serif; font-weight: 700;
+    }
+
+    /* STRIP */
+    .strip { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 0.5px solid var(--gold-dim); }
+    .strip-item { padding: 1.5rem 2rem; border-right: 0.5px solid var(--gold-dim); text-align: center; }
+    .strip-item:last-child { border-right: none; }
+    .strip-num { font-size: 30px; color: var(--gold); font-weight: 700; }
+    .strip-label { font-size: 9px; letter-spacing: 2px; color: var(--text-dim); font-family: sans-serif; margin-top: .3rem; }
+
+    /* CATEGORIES */
+    .cats { display: flex; border-bottom: 0.5px solid var(--gold-dim); overflow-x: auto; }
+    .cat {
+      padding: .9rem 1.8rem; font-size: 10px; letter-spacing: 3px;
+      color: var(--text-dim); cursor: pointer; font-family: sans-serif;
+      border-bottom: 1.5px solid transparent; white-space: nowrap; transition: color .2s;
+    }
+    .cat:hover { color: var(--gold); }
+    .cat.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* PRODUCTS */
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #b8963e15; }
+    .pcard { background: var(--black); padding: 1.5rem; cursor: pointer; transition: background .2s; }
+    .pcard:hover { background: #120f05; }
+    .pthumb {
+      height: 150px; background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; border: 0.5px solid var(--gold-dim);
+      position: relative; font-size: 52px;
+    }
+    .pbadge {
+      position: absolute; top: 8px; left: 8px;
+      background: var(--gold); color: var(--black);
+      font-size: 8px; letter-spacing: 2px; padding: 2px 8px;
+      font-family: sans-serif; font-weight: 700;
+    }
+    .pcat { font-size: 9px; letter-spacing: 2px; color: #c9a84c77; font-family: sans-serif; margin-bottom: .3rem; }
+    .pname { font-size: 14px; color: var(--text); margin-bottom: .4rem; line-height: 1.3; }
+    .pdesc { font-size: 11px; color: var(--text-muted); font-family: sans-serif; line-height: 1.6; margin-bottom: .9rem; }
+    .prow { display: flex; justify-content: space-between; align-items: center; }
+    .pprice { font-size: 17px; color: var(--gold); font-weight: 700; }
+    .padd {
+      background: var(--gold); color: var(--black); border: none;
+      padding: .45rem 1rem; font-size: 9px; letter-spacing: 2px;
+      cursor: pointer; font-family: sans-serif; font-weight: 700; transition: background .2s;
+    }
+    .padd:hover { background: var(--gold-light); }
+    .padd.added { background: #2a2a2a; color: var(--gold); border: 0.5px solid var(--gold-dim); }
+
+    /* CART DRAWER */
+    .overlay { position: fixed; inset: 0; background: #00000088; z-index: 150; display: none; }
+    .overlay.show { display: block; }
+    .drawer {
+      position: fixed; top: 0; right: -400px; width: 380px; height: 100vh;
+      background: #0d0d0d; border-left: 0.5px solid var(--gold-dim);
+      z-index: 200; transition: right .3s ease; display: flex; flex-direction: column;
+    }
+    .drawer.open { right: 0; }
+    .drawer-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem; border-bottom: 0.5px solid var(--gold-dim);
+    }
+    .drawer-title { font-size: 12px; letter-spacing: 4px; color: var(--gold); }
+    .drawer-close { background: none; border: none; color: var(--gold); font-size: 20px; cursor: pointer; }
+    .drawer-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .citem { display: flex; gap: 12px; padding: .9rem 0; border-bottom: 0.5px solid #b8963e15; align-items: center; }
+    .citem-icon { width: 48px; height: 48px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; border: 0.5px solid var(--gold-dim); }
+    .citem-info { flex: 1; }
+    .citem-name { font-size: 12px; color: var(--text); line-height: 1.3; }
+    .citem-price { font-size: 12px; color: var(--gold); margin-top: 3px; font-family: sans-serif; }
+    .citem-qty { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .qty-btn {
+      background: #1a1a1a; color: var(--gold); border: 0.5px solid var(--gold-dim);
+      width: 24px; height: 24px; cursor: pointer; font-size: 16px;
+      display: flex; align-items: center; justify-content: center; font-family: sans-serif;
+    }
+    .qty-num { font-size: 13px; color: var(--text); min-width: 18px; text-align: center; font-family: sans-serif; }
+    .citem-del { color: #c9a84c44; cursor: pointer; font-size: 16px; background: none; border: none; transition: color .2s; }
+    .citem-del:hover { color: var(--gold); }
+    .drawer-foot { padding: 1.5rem; border-top: 0.5px solid var(--gold-dim); }
+    .total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem; }
+    .total-label { font-size: 10px; letter-spacing: 2px; color: var(--text-dim); font-family: sans-serif; }
+    .total-val { font-size: 22px; color: var(--gold); font-weight: 700; }
+    .checkout-btn {
+      width: 100%; background: var(--gold); color: var(--black); border: none;
+      padding: 1rem; font-size: 11px; letter-spacing: 3px; cursor: pointer;
+      font-family: 'Playfair Display', serif; font-weight: 700; transition: background .2s;
+    }
+    .checkout-btn:hover { background: var(--gold-light); }
+    .empty { text-align: center; padding: 3rem 1rem; color: var(--text-dim); font-size: 11px; font-family: sans-serif; letter-spacing: 2px; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem; text-align: center;
+      border-top: 0.5px solid var(--gold-dim);
+      font-size: 9px; letter-spacing: 3px; color: var(--text-dim);
+      font-family: sans-serif; margin-top: 1px;
+    }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .strip { grid-template-columns: 1fr; }
+      .drawer { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MAGNUS</div>
+  <div class="nav-links">
+    <a href="#coleccion">Colección</a>
+    <a href="#nosotras">Nosotras</a>
+    <a href="#contacto">Contacto</a>
+    <button class="cart-btn" onclick="toggleCart()" aria-label="Carrito">
+      <i class="ti ti-shopping-bag"></i>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">Colección exclusiva · México 2025</p>
+    <h1 class="hero-h">Tu ritual<br>de <span>belleza</span><br>elevado</h1>
+    <p class="hero-sub">Cosméticos de alta gama diseñados para la mujer que exige lo mejor. Formulados con ingredientes premium para resultados extraordinarios.</p>
+    <div>
+      <button class="btn-gold" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'})">Explorar colección</button>
+      <button class="btn-outline">Nuestro ritual</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-block">💛<span class="hero-badge">Nuevo</span></div>
+    <div class="hero-block">💄</div>
+    <div class="hero-block">✨<span class="hero-badge">Top</span></div>
+    <div class="hero-block">🌹</div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-item"><div class="strip-num">12</div><div class="strip-label">Productos premium</div></div>
+  <div class="strip-item"><div class="strip-num">100%</div><div class="strip-label">Envío a México</div></div>
+  <div class="strip-item"><div class="strip-num">Cruelty<br>free</div><div class="strip-label">Sin pruebas en animales</div></div>
+</div>
+
+<div id="coleccion">
+  <div class="cats" id="cats"></div>
+  <div class="products-grid" id="products"></div>
+</div>
+
+<footer id="contacto">
+  MAGNUS © 2025 — México — Todos los derechos reservados
+</footer>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span class="drawer-title">Tu selección</span>
+    <button class="drawer-close" onclick="toggleCart()"><i class="ti ti-x"></i></button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <span class="total-label">Total estimado</span>
+      <span class="total-val" id="totalVal">$0 MXN</span>
+    </div>
+    <button class="checkout-btn">Proceder al pago →</button>
+  </div>
+</div>
+
+<script>
+  const products = [
+    {id:1, name:'Sérum Áureo Regenerador', cat:'Sérum', price:1290, desc:'Con ácido hialurónico y partículas de oro de 24k. Hidratación profunda en 7 días.', icon:'💛', badge:'Más vendido'},
+    {id:2, name:'Labial Magnus Noir', cat:'Labios', price:690, desc:'Acabado mate de larga duración. 12 horas sin retoques, fórmula hidratante.', icon:'💄', badge:''},
+    {id:3, name:'Base Luminosa Gold', cat:'Rostro', price:980, desc:'Cobertura media-alta con acabado satinado. FPS 30 incluido.', icon:'✨', badge:'Nuevo'},
+    {id:4, name:'Desmaquillante Micellar Luxury', cat:'Cuidado', price:520, desc:'Elimina maquillaje resistente al agua sin resecar. Apto para piel sensible.', icon:'🌿', badge:''},
+    {id:5, name:'Paleta Ojos Noir & Or', cat:'Ojos', price:1150, desc:'12 tonos entre ahumados profundos y destellos dorados. Pigmentación extrema.', icon:'🎨', badge:'Exclusivo'},
+    {id:6, name:'Contorno Magnus Sculpt', cat:'Rostro', price:760, desc:'Duo de iluminador y bronzer para un efecto esculpido de salón.', icon:'🌟', badge:''},
+    {id:7, name:'Labial Velvet Dorado', cat:'Labios', price:750, desc:'Acabado semi-brillante con destellos dorados. Hidratación 8 horas.', icon:'💋', badge:'Nuevo'},
+    {id:8, name:'Corrector Pro Cover', cat:'Rostro', price:590, desc:'Alta cobertura, acabado natural. Cubre ojeras, manchas e imperfecciones.', icon:'💫', badge:''},
+    {id:9, name:'Sérum Vitamina C Glow', cat:'Sérum', price:1080, desc:'Ilumina y unifica el tono. Con vitamina C estabilizada al 15% y niacinamida.', icon:'🍊', badge:'Top rated'},
+    {id:10, name:'Máscara Volume Noir', cat:'Ojos', price:480, desc:'Fórmula waterproof. Volumen y longitud extremos. Cepillo de precisión.', icon:'🖤', badge:''},
+    {id:11, name:'Crema Hidratante Royal', cat:'Cuidado', price:890, desc:'Con manteca de karité, rosa mosqueta y extracto de perla. 24h de hidratación.', icon:'🌹', badge:'Bestseller'},
+    {id:12, name:'Fijador Spray Crystal', cat:'Cuidado', price:420, desc:'Fija el maquillaje hasta 16 horas. Acabado fresco y natural.', icon:'💎', badge:''},
+  ];
+
+  const cats = ['Todos','Sérum','Labios','Rostro','Ojos','Cuidado'];
+  let cart = {};
+  let activeCat = 'Todos';
+
+  function renderCats() {
+    document.getElementById('cats').innerHTML = cats.map(c =>
+      `<div class="cat${c===activeCat?' active':''}" onclick="filterCat('${c}')">${c}</div>`
+    ).join('');
+  }
+
+  function filterCat(c) { activeCat = c; renderCats(); renderProducts(); }
+
+  function renderProducts() {
+    const filtered = activeCat === 'Todos' ? products : products.filter(p => p.cat === activeCat);
+    document.getElementById('products').innerHTML = filtered.map(p => {
+      const inCart = cart[p.id] && cart[p.id].qty > 0;
+      return `<div class="pcard">
+        <div class="pthumb">${p.icon}${p.badge ? `<span class="pbadge">${p.badge}</span>` : ''}</div>
+        <p class="pcat">${p.cat}</p>
+        <p class="pname">${p.name}</p>
+        <p class="pdesc">${p.desc}</p>
+        <div class="prow">
+          <span class="pprice">$${p.price.toLocaleString()} MXN</span>
+          <button class="padd${inCart?' added':''}" onclick="addToCart(${p.id})">${inCart ? '✓ Agregado' : '+ Agregar'}</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function addToCart(id) {
+    const p = products.find(x => x.id === id);
+    if (!cart[id]) cart[id] = {...p, qty: 0};
+    cart[id].qty++;
+    updateCartUI();
+    renderProducts();
+  }
+
+  function changeQty(id, delta) {
+    if (!cart[id]) return;
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) delete cart[id];
+    updateCartUI();
+    renderProducts();
+  }
+
+  function updateCartUI() {
+    const items = Object.values(cart);
+    const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const count = items.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = count;
+    document.getElementById('totalVal').textContent = '$' + total.toLocaleString() + ' MXN';
+    const el = document.getElementById('drawerItems');
+    if (!items.length) { el.innerHTML = '<div class="empty">Tu carrito está vacío</div>'; return; }
+    el.innerHTML = items.map(i => `<div class="citem">
+      <div class="citem-icon">${i.icon}</div>
+      <div class="citem-info">
+        <div class="citem-name">${i.name}</div>
+        <div class="citem-price">$${i.price.toLocaleString()} MXN</div>
+        <div class="citem-qty">
+          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        </div>
+      </div>
+      <button class="citem-del" onclick="changeQty(${i.id},-${i.qty})"><i class="ti ti-trash"></i></button>
+    </div>`).join('');
+  }
+
+  function toggleCart() {
+    document.getElementById('drawer').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('show');
+  }
+
+  renderCats();
+  renderProducts();
+  updateCartUI();
+</script>
+</body>
+</html>

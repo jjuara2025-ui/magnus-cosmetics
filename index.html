@@ -1,208 +1,217 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MAGNUS — Cosméticos de Lujo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
   <style>
-    :root{--gold:#c9a84c;--gold-l:#e0be6a;--dim:#b8963e33;--black:#0a0a0a;--surf:#141414;--text:#f5f0e8;--muted:#f5f0e877;--faint:#f5f0e833}
+    :root{
+      --bg:#1c1410;--bg2:#261a13;--bg3:#3d2b1f;
+      --accent:#c17f5a;--accent-l:#d4956e;--accent-ll:#e8c9a8;
+      --text:#fdf5ec;--muted:#e8c9a877;--faint:#e8c9a833;--dim:#c17f5a33;
+    }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--black);color:var(--text);font-family:'Playfair Display',serif;min-height:100vh}
+    body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;min-height:100vh}
+    .page{display:none}.page.active{display:block}
 
     /* NAV */
-    nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2rem;border-bottom:0.5px solid var(--dim);position:sticky;top:0;background:var(--black);z-index:100}
-    .logo{font-size:22px;font-weight:700;letter-spacing:8px;color:var(--gold);cursor:pointer}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 2rem;border-bottom:0.5px solid var(--dim);position:sticky;top:0;background:var(--bg);z-index:100}
+    .logo{font-size:26px;font-weight:500;letter-spacing:10px;color:var(--accent);cursor:pointer;font-family:'Cormorant Garamond',serif}
     .nav-right{display:flex;align-items:center;gap:2rem}
     .nav-links{display:flex;gap:2rem}
-    .nav-links span{color:#c9a84c99;font-size:11px;letter-spacing:2px;cursor:pointer;font-family:sans-serif;transition:color .2s}
-    .nav-links span:hover{color:var(--gold)}
-    .back-btn{background:none;border:none;color:var(--gold);font-size:11px;letter-spacing:2px;cursor:pointer;font-family:sans-serif;align-items:center;gap:6px;display:none}
+    .nav-links span{color:var(--muted);font-size:13px;letter-spacing:3px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;transition:color .2s}
+    .nav-links span:hover{color:var(--accent)}
+    .back-btn{background:none;border:none;color:var(--accent);font-size:12px;letter-spacing:2px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;align-items:center;gap:6px;display:none}
     .back-btn.show{display:flex}
-    .cart-btn{position:relative;cursor:pointer;color:var(--gold);font-size:22px;background:none;border:none}
-    .cart-count{position:absolute;top:-6px;right:-8px;background:var(--gold);color:var(--black);font-size:9px;font-weight:700;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-family:sans-serif}
-
-    /* PAGES */
-    .page{display:none}
-    .page.active{display:block}
+    .cart-btn{position:relative;cursor:pointer;color:var(--accent);font-size:22px;background:none;border:none}
+    .cart-count{position:absolute;top:-6px;right:-8px;background:var(--accent);color:var(--bg);font-size:9px;font-weight:700;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif}
 
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 1fr;min-height:480px;border-bottom:0.5px solid var(--dim)}
     .hero-left{padding:4rem 2.5rem;display:flex;flex-direction:column;justify-content:center;border-right:0.5px solid var(--dim)}
-    .eyebrow{font-size:9px;letter-spacing:5px;color:var(--gold);margin-bottom:1.2rem;font-family:sans-serif}
-    .hero-h{font-size:42px;font-weight:700;line-height:1.1;margin-bottom:1.2rem}
-    .hero-h span{color:var(--gold)}
-    .hero-sub{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:2rem;font-family:'Cormorant Garamond',serif}
-    .btn-gold{background:var(--gold);color:var(--black);border:none;padding:.8rem 2rem;font-size:10px;letter-spacing:3px;cursor:pointer;font-family:'Playfair Display',serif;font-weight:700;transition:background .2s}
-    .btn-gold:hover{background:var(--gold-l)}
-    .btn-outline{background:transparent;color:var(--gold);border:0.5px solid var(--gold);padding:.8rem 2rem;font-size:10px;letter-spacing:3px;cursor:pointer;font-family:'Playfair Display',serif;margin-left:1rem}
-    .btn-outline:hover{background:#120f05}
+    .eyebrow{font-size:11px;letter-spacing:5px;color:var(--accent);margin-bottom:1.2rem;font-family:'Jost',sans-serif;font-weight:300}
+    .hero-h{font-size:52px;font-weight:300;line-height:1.1;margin-bottom:1.2rem;font-style:italic}
+    .hero-h span{color:var(--accent);font-style:normal;font-weight:500}
+    .hero-sub{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:2rem;font-weight:300}
+    .btn-main{background:var(--accent);color:var(--bg);border:none;padding:.9rem 2.2rem;font-size:12px;letter-spacing:4px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:background .2s}
+    .btn-main:hover{background:var(--accent-l)}
+    .btn-ghost{background:transparent;color:var(--accent);border:0.5px solid var(--accent);padding:.9rem 2.2rem;font-size:12px;letter-spacing:4px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;margin-left:1rem}
+    .btn-ghost:hover{background:var(--bg3)}
     .hero-right{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
-    .hero-block{display:flex;align-items:center;justify-content:center;border:0.5px solid var(--dim);position:relative;min-height:120px;font-size:52px;cursor:pointer;transition:filter .2s}
-    .hero-block:hover{filter:brightness(1.2)}
-    .hero-block:nth-child(1){background:#1a1408}
-    .hero-block:nth-child(2){background:#110d0d}
-    .hero-block:nth-child(3){background:#0d1210}
-    .hero-block:nth-child(4){background:#13100d}
-    .hero-badge{position:absolute;top:10px;right:10px;background:var(--gold);color:var(--black);font-size:8px;letter-spacing:2px;padding:3px 8px;font-family:sans-serif;font-weight:700}
+    .hero-block{display:flex;align-items:center;justify-content:center;border:0.5px solid var(--dim);position:relative;overflow:hidden;cursor:pointer;min-height:120px}
+    .hero-block:nth-child(1){background:#2a1e16}
+    .hero-block:nth-child(2){background:#1e1710}
+    .hero-block:nth-child(3){background:#231911}
+    .hero-block:nth-child(4){background:#2e2018}
+    .hero-block img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .3s}
+    .hero-block:hover img{opacity:1}
+    .hero-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:var(--bg);font-size:8px;letter-spacing:2px;padding:3px 8px;font-family:'Jost',sans-serif;font-weight:500}
 
     /* STRIP */
     .strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:0.5px solid var(--dim)}
     .strip-item{padding:1.5rem 2rem;border-right:0.5px solid var(--dim);text-align:center}
     .strip-item:last-child{border-right:none}
-    .strip-num{font-size:30px;color:var(--gold);font-weight:700}
-    .strip-label{font-size:9px;letter-spacing:2px;color:var(--faint);font-family:sans-serif;margin-top:.3rem}
+    .strip-num{font-size:34px;color:var(--accent);font-weight:300;font-style:italic}
+    .strip-label{font-size:11px;letter-spacing:2px;color:var(--faint);font-family:'Jost',sans-serif;font-weight:300;margin-top:.3rem}
 
     /* CATALOG */
-    .section-eyebrow{font-size:9px;letter-spacing:5px;color:var(--gold);padding:1.5rem 2rem .8rem;font-family:sans-serif;border-top:0.5px solid var(--dim)}
+    .section-eyebrow{font-size:11px;letter-spacing:5px;color:var(--accent);padding:2rem 2rem 1rem;font-family:'Jost',sans-serif;font-weight:300;border-top:0.5px solid var(--dim)}
     .cats{display:flex;border-bottom:0.5px solid var(--dim);overflow-x:auto}
-    .cat{padding:.9rem 1.8rem;font-size:10px;letter-spacing:3px;color:var(--faint);cursor:pointer;font-family:sans-serif;border-bottom:1.5px solid transparent;white-space:nowrap;transition:color .2s}
-    .cat:hover{color:var(--gold)}
-    .cat.active{color:var(--gold);border-bottom-color:var(--gold)}
-    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#b8963e15}
-    .pcard{background:var(--black);cursor:pointer;transition:background .2s}
-    .pcard:hover{background:#120f05}
-    .pthumb{height:160px;background:var(--surf);display:flex;align-items:center;justify-content:center;border-bottom:0.5px solid var(--dim);position:relative;font-size:56px}
-    .pbadge{position:absolute;top:8px;left:8px;background:var(--gold);color:var(--black);font-size:8px;letter-spacing:2px;padding:2px 8px;font-family:sans-serif;font-weight:700}
-    .pinfo{padding:1rem}
-    .pcat{font-size:9px;letter-spacing:2px;color:#c9a84c77;font-family:sans-serif;margin-bottom:.3rem}
-    .pname{font-size:13px;line-height:1.3;margin-bottom:.5rem}
+    .cat{padding:1rem 2rem;font-size:11px;letter-spacing:3px;color:var(--faint);cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;border-bottom:1.5px solid transparent;white-space:nowrap;transition:color .2s}
+    .cat:hover{color:var(--accent)}
+    .cat.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--dim)}
+    .pcard{background:var(--bg);cursor:pointer;transition:background .2s}
+    .pcard:hover{background:var(--bg2)}
+    .pthumb{height:220px;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .pthumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .pcard:hover .pthumb img{transform:scale(1.04)}
+    .pbadge{position:absolute;top:10px;left:10px;background:var(--accent);color:var(--bg);font-size:8px;letter-spacing:2px;padding:3px 8px;font-family:'Jost',sans-serif;font-weight:500}
+    .pinfo{padding:1.2rem}
+    .pcat{font-size:10px;letter-spacing:3px;color:var(--accent);font-family:'Jost',sans-serif;font-weight:300;margin-bottom:.4rem;opacity:.7}
+    .pname{font-size:17px;color:var(--text);margin-bottom:.4rem;line-height:1.3;font-weight:400}
+    .pdesc{font-size:13px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;margin-bottom:.9rem}
     .prow{display:flex;justify-content:space-between;align-items:center}
-    .pprice{font-size:15px;color:var(--gold);font-weight:700}
-    .padd{background:var(--gold);color:var(--black);border:none;padding:.4rem .9rem;font-size:9px;letter-spacing:2px;cursor:pointer;font-family:sans-serif;font-weight:700;transition:background .2s}
-    .padd:hover{background:var(--gold-l)}
-    .padd.added{background:#2a2a2a;color:var(--gold);border:0.5px solid var(--dim)}
+    .pprice{font-size:20px;color:var(--accent);font-weight:300;font-style:italic}
+    .padd{background:var(--accent);color:var(--bg);border:none;padding:.5rem 1.1rem;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:background .2s}
+    .padd:hover{background:var(--accent-l)}
+    .padd.added{background:var(--bg3);color:var(--accent);border:0.5px solid var(--dim)}
 
-    /* PRODUCT DETAIL */
-    .d-hero{display:grid;grid-template-columns:1fr 1fr;min-height:400px;border-bottom:0.5px solid var(--dim)}
-    .d-img{display:flex;align-items:center;justify-content:center;background:var(--surf);border-right:0.5px solid var(--dim);font-size:100px;position:relative;min-height:320px}
-    .d-badge{position:absolute;top:16px;left:16px;background:var(--gold);color:var(--black);font-size:9px;letter-spacing:2px;padding:4px 10px;font-family:sans-serif;font-weight:700}
+    /* DETAIL */
+    .d-hero{display:grid;grid-template-columns:1fr 1fr;min-height:420px;border-bottom:0.5px solid var(--dim)}
+    .d-img{background:var(--bg3);border-right:0.5px solid var(--dim);position:relative;overflow:hidden;min-height:340px}
+    .d-img img{width:100%;height:100%;object-fit:cover}
+    .d-badge{position:absolute;top:16px;left:16px;background:var(--accent);color:var(--bg);font-size:9px;letter-spacing:2px;padding:4px 10px;font-family:'Jost',sans-serif;font-weight:500}
     .d-info{padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:center}
-    .d-eyebrow{font-size:9px;letter-spacing:4px;color:var(--gold);margin-bottom:.8rem;font-family:sans-serif}
-    .d-name{font-size:26px;font-weight:700;line-height:1.2;margin-bottom:.8rem}
-    .d-tagline{font-size:15px;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;margin-bottom:1rem}
-    .d-desc{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:1.5rem;font-family:sans-serif}
-    .d-price{font-size:28px;color:var(--gold);font-weight:700;margin-bottom:.3rem}
-    .d-price-note{font-size:10px;color:var(--faint);font-family:sans-serif;margin-bottom:1.5rem}
+    .d-eyebrow{font-size:10px;letter-spacing:4px;color:var(--accent);margin-bottom:.8rem;font-family:'Jost',sans-serif;font-weight:300}
+    .d-name{font-size:30px;font-weight:400;line-height:1.2;margin-bottom:.8rem}
+    .d-tagline{font-size:18px;color:var(--accent);font-style:italic;margin-bottom:1rem;font-weight:300}
+    .d-desc{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:1.5rem;font-family:'Jost',sans-serif;font-weight:300}
+    .d-price{font-size:32px;color:var(--accent);font-weight:300;font-style:italic;margin-bottom:.3rem}
+    .d-price-note{font-size:12px;color:var(--faint);font-family:'Jost',sans-serif;margin-bottom:1.5rem}
     .d-btn-row{display:flex;align-items:center;gap:.8rem}
-    .d-add{background:var(--gold);color:var(--black);border:none;padding:.9rem 2rem;font-size:10px;letter-spacing:3px;cursor:pointer;font-family:'Playfair Display',serif;font-weight:700;transition:background .2s}
-    .d-add:hover{background:var(--gold-l)}
-    .d-add.added{background:#2a2a2a;color:var(--gold);border:0.5px solid var(--dim)}
-    .d-wish{background:transparent;color:var(--gold);border:0.5px solid var(--gold);padding:.9rem 1.1rem;cursor:pointer;font-size:16px}
+    .d-add{background:var(--accent);color:var(--bg);border:none;padding:.9rem 2rem;font-size:11px;letter-spacing:3px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:background .2s}
+    .d-add:hover{background:var(--accent-l)}
+    .d-add.added{background:var(--bg3);color:var(--accent);border:0.5px solid var(--dim)}
+    .d-wish{background:transparent;color:var(--accent);border:0.5px solid var(--accent);padding:.9rem 1.1rem;cursor:pointer;font-size:16px}
     .d-tabs{display:flex;border-bottom:0.5px solid var(--dim);padding:0 2rem}
-    .d-tab{padding:.8rem 1.5rem;font-size:10px;letter-spacing:2px;color:var(--faint);cursor:pointer;font-family:sans-serif;border-bottom:1.5px solid transparent;transition:color .2s}
-    .d-tab:hover{color:var(--gold)}
-    .d-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+    .d-tab{padding:.9rem 1.5rem;font-size:11px;letter-spacing:2px;color:var(--faint);cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;border-bottom:1.5px solid transparent;transition:color .2s}
+    .d-tab:hover{color:var(--accent)}
+    .d-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
     .d-panel{padding:2rem;display:none}
     .d-panel.active{display:block}
     .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--dim)}
-    .spec-item{background:var(--black);padding:1rem 1.2rem}
-    .spec-label{font-size:9px;letter-spacing:2px;color:var(--gold);font-family:sans-serif;margin-bottom:.4rem}
-    .spec-val{font-size:12px;color:var(--text);line-height:1.5;font-family:sans-serif}
+    .spec-item{background:var(--bg);padding:1rem 1.2rem}
+    .spec-label{font-size:10px;letter-spacing:2px;color:var(--accent);font-family:'Jost',sans-serif;margin-bottom:.4rem}
+    .spec-val{font-size:14px;color:var(--text);line-height:1.5;font-family:'Jost',sans-serif;font-weight:300}
     .ing-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:.8rem}
-    .ing{background:var(--surf);border:0.5px solid var(--dim);padding:4px 12px;font-size:11px;color:var(--muted);font-family:sans-serif}
-    .how-steps{display:flex;flex-direction:column;gap:1rem}
+    .ing{background:var(--bg3);border:0.5px solid var(--dim);padding:5px 14px;font-size:12px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300}
+    .how-steps{display:flex;flex-direction:column;gap:1.2rem}
     .how-step{display:flex;gap:1rem;align-items:flex-start}
-    .step-num{width:28px;height:28px;border:0.5px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-family:sans-serif}
-    .step-text{font-size:12px;color:var(--muted);line-height:1.7;font-family:sans-serif;padding-top:4px}
-    .reviews{display:flex;flex-direction:column;gap:1rem}
+    .step-num{width:28px;height:28px;border:0.5px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-family:'Jost',sans-serif}
+    .step-text{font-size:14px;color:var(--muted);line-height:1.7;font-family:'Jost',sans-serif;font-weight:300;padding-top:4px}
+    .reviews{display:flex;flex-direction:column;gap:1.2rem}
     .review{border-bottom:0.5px solid var(--dim);padding-bottom:1rem}
-    .stars{color:var(--gold);font-size:13px;margin-bottom:.3rem}
-    .rev-name{font-size:12px;font-weight:500;margin-bottom:.3rem}
-    .rev-text{font-size:11px;color:var(--muted);font-family:sans-serif;line-height:1.6}
-    .rev-date{font-size:10px;color:var(--faint);font-family:sans-serif;margin-top:.3rem}
-    .related-title{font-size:9px;letter-spacing:4px;color:var(--gold);padding:1.5rem 2rem .8rem;font-family:sans-serif;border-top:0.5px solid var(--dim)}
+    .stars{color:var(--accent);font-size:14px;margin-bottom:.3rem}
+    .rev-name{font-size:14px;font-weight:400;margin-bottom:.3rem}
+    .rev-text{font-size:13px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6}
+    .rev-date{font-size:11px;color:var(--faint);font-family:'Jost',sans-serif;margin-top:.3rem}
+    .related-title{font-size:11px;letter-spacing:4px;color:var(--accent);padding:1.5rem 2rem .8rem;font-family:'Jost',sans-serif;font-weight:300;border-top:0.5px solid var(--dim)}
 
     /* CHECKOUT */
-    .co-progress{display:flex;align-items:center;justify-content:center;padding:1.2rem 2rem;border-bottom:0.5px solid var(--dim);gap:0}
+    .co-progress{display:flex;align-items:center;justify-content:center;padding:1.4rem 2rem;border-bottom:0.5px solid var(--dim);gap:0}
     .co-step{display:flex;align-items:center;gap:8px}
-    .co-snum{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-family:sans-serif;font-weight:700;border:0.5px solid var(--dim);color:var(--faint);transition:all .3s}
-    .co-snum.done{background:var(--gold);color:var(--black);border-color:var(--gold)}
-    .co-snum.active{border-color:var(--gold);color:var(--gold)}
-    .co-slabel{font-size:10px;letter-spacing:2px;color:var(--faint);font-family:sans-serif;transition:color .3s}
-    .co-slabel.active{color:var(--gold)}
+    .co-snum{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'Jost',sans-serif;font-weight:500;border:0.5px solid var(--dim);color:var(--faint);transition:all .3s}
+    .co-snum.done{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+    .co-snum.active{border-color:var(--accent);color:var(--accent)}
+    .co-slabel{font-size:11px;letter-spacing:2px;color:var(--faint);font-family:'Jost',sans-serif;font-weight:300;transition:color .3s}
+    .co-slabel.active{color:var(--accent)}
     .co-slabel.done{color:var(--muted)}
     .co-line{width:40px;height:0.5px;background:var(--dim);margin:0 .5rem}
-    .co-layout{display:grid;grid-template-columns:1fr 400px;min-height:calc(100vh - 120px)}
+    .co-layout{display:grid;grid-template-columns:1fr 400px}
     .co-form{padding:2.5rem}
-    .co-summary{padding:2rem;background:#0d0d0d;border-left:0.5px solid var(--dim)}
-    .co-title{font-size:9px;letter-spacing:4px;color:var(--gold);margin-bottom:1.5rem;font-family:sans-serif}
+    .co-summary{padding:2rem;background:var(--bg2);border-left:0.5px solid var(--dim)}
+    .co-title{font-size:11px;letter-spacing:4px;color:var(--accent);margin-bottom:1.5rem;font-family:'Jost',sans-serif;font-weight:300}
     .fg{margin-bottom:1.2rem}
     .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem}
-    label{display:block;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:.5rem;font-family:sans-serif}
-    input,select{width:100%;background:#111;border:0.5px solid var(--dim);color:var(--text);padding:.75rem 1rem;font-size:13px;font-family:'Playfair Display',serif;outline:none;transition:border-color .2s;-webkit-appearance:none}
+    label{display:block;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:.5rem;font-family:'Jost',sans-serif;font-weight:300}
+    input,select{width:100%;background:var(--bg2);border:0.5px solid var(--dim);color:var(--text);padding:.8rem 1rem;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:border-color .2s;-webkit-appearance:none}
     input::placeholder{color:var(--faint)}
-    input:focus,select:focus{border-color:var(--gold)}
-    select option{background:#111;color:var(--text)}
+    input:focus,select:focus{border-color:var(--accent)}
+    select option{background:var(--bg2);color:var(--text)}
     .ship-opts{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.5rem}
     .ship-opt{display:flex;align-items:center;gap:1rem;padding:1rem;border:0.5px solid var(--dim);cursor:pointer;transition:border-color .2s}
-    .ship-opt:hover{border-color:var(--gold)}
-    .ship-opt.selected{border-color:var(--gold);background:#120f05}
+    .ship-opt:hover{border-color:var(--accent)}
+    .ship-opt.selected{border-color:var(--accent);background:var(--bg3)}
     .ship-radio{width:16px;height:16px;border:0.5px solid var(--dim);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .ship-radio.on::after{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;display:block}
+    .ship-radio.on::after{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%;display:block}
     .ship-info{flex:1}
-    .ship-name{font-size:12px;color:var(--text);margin-bottom:2px}
-    .ship-desc{font-size:10px;color:var(--muted);font-family:sans-serif}
-    .ship-price{font-size:13px;color:var(--gold);font-weight:700}
-    .btn-next{width:100%;background:var(--gold);color:var(--black);border:none;padding:1rem;font-size:11px;letter-spacing:3px;cursor:pointer;font-family:'Playfair Display',serif;font-weight:700;transition:background .2s;margin-top:1.5rem}
-    .btn-next:hover{background:var(--gold-l)}
-    .btn-bk{background:none;border:0.5px solid var(--dim);color:var(--muted);padding:.8rem 1.5rem;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:sans-serif;margin-right:.8rem}
-    .btn-bk:hover{border-color:var(--gold);color:var(--gold)}
+    .ship-name{font-size:14px;color:var(--text);margin-bottom:2px}
+    .ship-desc{font-size:11px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300}
+    .ship-price{font-size:15px;color:var(--accent);font-weight:300;font-style:italic}
+    .btn-next{width:100%;background:var(--accent);color:var(--bg);border:none;padding:1rem;font-size:12px;letter-spacing:4px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:background .2s;margin-top:1.5rem}
+    .btn-next:hover{background:var(--accent-l)}
+    .btn-bk{background:none;border:0.5px solid var(--dim);color:var(--muted);padding:.8rem 1.5rem;font-size:11px;letter-spacing:2px;cursor:pointer;font-family:'Jost',sans-serif;margin-right:.8rem}
+    .btn-bk:hover{border-color:var(--accent);color:var(--accent)}
     .s-item{display:flex;gap:12px;padding:.8rem 0;border-bottom:0.5px solid var(--dim);align-items:center}
-    .s-icon{width:48px;height:48px;background:var(--surf);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:0.5px solid var(--dim);position:relative}
-    .s-qty-badge{position:absolute;top:-6px;right:-6px;background:var(--gold);color:var(--black);font-size:9px;font-weight:700;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-family:sans-serif}
-    .s-name{font-size:11px;color:var(--text);flex:1;line-height:1.4}
-    .s-price{font-size:12px;color:var(--gold);font-weight:700;white-space:nowrap}
+    .s-icon{width:52px;height:52px;background:var(--bg3);flex-shrink:0;border:0.5px solid var(--dim);overflow:hidden}
+    .s-icon img{width:100%;height:100%;object-fit:cover}
+    .s-qty-badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:var(--bg);font-size:9px;font-weight:700;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif}
+    .s-wrap{position:relative;flex-shrink:0}
+    .s-name{font-size:13px;color:var(--text);flex:1;line-height:1.4;font-family:'Jost',sans-serif;font-weight:300}
+    .s-price{font-size:14px;color:var(--accent);font-style:italic;white-space:nowrap}
     .tot-row{display:flex;justify-content:space-between;margin-bottom:.6rem}
-    .tot-label{font-size:11px;color:var(--muted);font-family:sans-serif}
-    .tot-val{font-size:11px;color:var(--text);font-family:sans-serif}
+    .tot-label{font-size:12px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300}
+    .tot-val{font-size:12px;color:var(--text);font-family:'Jost',sans-serif}
     .coupon-row{display:flex;gap:.5rem;margin:1rem 0}
     .coupon-row input{flex:1}
-    .coupon-btn{background:transparent;border:0.5px solid var(--dim);color:var(--gold);padding:.75rem 1rem;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:sans-serif;white-space:nowrap}
-    .coupon-btn:hover{border-color:var(--gold)}
-    .coupon-ok{font-size:10px;color:#4caf50;font-family:sans-serif;margin-top:.3rem;display:none}
-    .success-page{text-align:center;padding:4rem 2rem}
-    .success-icon{font-size:56px;margin-bottom:1.5rem}
-    .success-title{font-size:28px;font-weight:700;margin-bottom:.8rem}
-    .success-title span{color:var(--gold)}
-    .success-sub{font-size:13px;color:var(--muted);font-family:sans-serif;line-height:1.8;max-width:400px;margin:0 auto 2rem}
-    .order-num{font-size:11px;letter-spacing:3px;color:var(--gold);font-family:sans-serif;border:0.5px solid var(--dim);display:inline-block;padding:.6rem 1.5rem;margin-bottom:2rem}
+    .coupon-btn{background:transparent;border:0.5px solid var(--dim);color:var(--accent);padding:.8rem 1rem;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap}
+    .coupon-btn:hover{border-color:var(--accent)}
+    .coupon-ok{font-size:11px;color:#7cb87c;font-family:'Jost',sans-serif;margin-top:.3rem;display:none}
+    .success-page{text-align:center;padding:5rem 2rem}
+    .success-icon{font-size:52px;margin-bottom:1.5rem}
+    .success-title{font-size:36px;font-weight:300;font-style:italic;margin-bottom:.8rem}
+    .success-title span{color:var(--accent);font-style:normal;font-weight:500}
+    .success-sub{font-size:15px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300;line-height:1.8;max-width:440px;margin:0 auto 2rem}
+    .order-num{font-size:11px;letter-spacing:4px;color:var(--accent);font-family:'Jost',sans-serif;border:0.5px solid var(--dim);display:inline-block;padding:.7rem 2rem;margin-bottom:2rem}
 
     /* CART DRAWER */
     .overlay{position:fixed;inset:0;background:#00000088;z-index:150;display:none}
     .overlay.show{display:block}
-    .drawer{position:fixed;top:0;right:-400px;width:380px;height:100vh;background:#0d0d0d;border-left:0.5px solid var(--dim);z-index:200;transition:right .3s ease;display:flex;flex-direction:column}
+    .drawer{position:fixed;top:0;right:-400px;width:380px;height:100vh;background:var(--bg2);border-left:0.5px solid var(--dim);z-index:200;transition:right .3s ease;display:flex;flex-direction:column}
     .drawer.open{right:0}
     .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:1.5rem;border-bottom:0.5px solid var(--dim)}
-    .drawer-title{font-size:12px;letter-spacing:4px;color:var(--gold)}
-    .drawer-close{background:none;border:none;color:var(--gold);font-size:20px;cursor:pointer}
+    .drawer-title{font-size:13px;letter-spacing:4px;color:var(--accent);font-family:'Jost',sans-serif;font-weight:300}
+    .drawer-close{background:none;border:none;color:var(--accent);font-size:20px;cursor:pointer}
     .drawer-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
-    .citem{display:flex;gap:12px;padding:.9rem 0;border-bottom:0.5px solid #b8963e15;align-items:center}
-    .citem-icon{width:48px;height:48px;background:var(--surf);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;border:0.5px solid var(--dim)}
+    .citem{display:flex;gap:12px;padding:.9rem 0;border-bottom:0.5px solid var(--dim);align-items:center}
+    .citem-icon{width:52px;height:52px;background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:0.5px solid var(--dim);overflow:hidden}
+    .citem-icon img{width:100%;height:100%;object-fit:cover}
     .citem-info{flex:1}
-    .citem-name{font-size:12px;color:var(--text);line-height:1.3}
-    .citem-price{font-size:12px;color:var(--gold);margin-top:3px;font-family:sans-serif}
+    .citem-name{font-size:13px;color:var(--text);line-height:1.3;font-family:'Jost',sans-serif;font-weight:300}
+    .citem-price{font-size:14px;color:var(--accent);margin-top:3px;font-style:italic}
     .citem-qty{display:flex;align-items:center;gap:10px;margin-top:8px}
-    .qty-btn{background:#1a1a1a;color:var(--gold);border:0.5px solid var(--dim);width:24px;height:24px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;font-family:sans-serif}
-    .qty-num{font-size:13px;color:var(--text);min-width:18px;text-align:center;font-family:sans-serif}
-    .citem-del{color:#c9a84c44;cursor:pointer;font-size:16px;background:none;border:none;transition:color .2s}
-    .citem-del:hover{color:var(--gold)}
+    .qty-btn{background:var(--bg3);color:var(--accent);border:0.5px solid var(--dim);width:26px;height:26px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+    .qty-num{font-size:14px;color:var(--text);min-width:18px;text-align:center;font-family:'Jost',sans-serif}
+    .citem-del{color:var(--faint);cursor:pointer;font-size:16px;background:none;border:none;transition:color .2s}
+    .citem-del:hover{color:var(--accent)}
     .drawer-foot{padding:1.5rem;border-top:0.5px solid var(--dim)}
     .drawer-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.2rem}
-    .drawer-total-label{font-size:10px;letter-spacing:2px;color:var(--faint);font-family:sans-serif}
-    .drawer-total-val{font-size:22px;color:var(--gold);font-weight:700}
-    .checkout-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:1rem;font-size:11px;letter-spacing:3px;cursor:pointer;font-family:'Playfair Display',serif;font-weight:700;transition:background .2s}
-    .checkout-btn:hover{background:var(--gold-l)}
-    .empty{text-align:center;padding:3rem 1rem;color:var(--faint);font-size:11px;font-family:sans-serif;letter-spacing:2px}
+    .drawer-total-label{font-size:11px;letter-spacing:2px;color:var(--faint);font-family:'Jost',sans-serif}
+    .drawer-total-val{font-size:26px;color:var(--accent);font-weight:300;font-style:italic}
+    .checkout-btn{width:100%;background:var(--accent);color:var(--bg);border:none;padding:1rem;font-size:12px;letter-spacing:4px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:background .2s}
+    .checkout-btn:hover{background:var(--accent-l)}
+    .empty{text-align:center;padding:3rem 1rem;color:var(--faint);font-size:13px;font-family:'Jost',sans-serif;letter-spacing:2px}
 
-    footer{padding:2rem;text-align:center;border-top:0.5px solid var(--dim);font-size:9px;letter-spacing:3px;color:var(--faint);font-family:sans-serif}
+    footer{padding:2rem;text-align:center;border-top:0.5px solid var(--dim);font-size:11px;letter-spacing:3px;color:var(--faint);font-family:'Jost',sans-serif;font-weight:300}
 
     @media(max-width:700px){
       .hero{grid-template-columns:1fr}.hero-right{display:none}
-      .products-grid{grid-template-columns:1fr 1fr}
-      .d-hero{grid-template-columns:1fr}.d-img{min-height:220px}
+      .pgrid{grid-template-columns:1fr 1fr}
+      .d-hero{grid-template-columns:1fr}.d-img{min-height:260px}
       .strip{grid-template-columns:1fr}
       .co-layout{grid-template-columns:1fr}
       .co-summary{order:-1;border-left:none;border-bottom:0.5px solid var(--dim)}
@@ -223,7 +232,7 @@
       <span>Nosotras</span>
       <span>Contacto</span>
     </div>
-    <button class="cart-btn" onclick="toggleCart()" aria-label="Carrito">
+    <button class="cart-btn" onclick="toggleCart()">
       <i class="ti ti-shopping-bag"></i>
       <span class="cart-count" id="cartCount">0</span>
     </button>
@@ -236,33 +245,45 @@
     <div class="hero-left">
       <p class="eyebrow">Colección exclusiva · México 2025</p>
       <h1 class="hero-h">Tu ritual<br>de <span>belleza</span><br>elevado</h1>
-      <p class="hero-sub">Cosméticos de alta gama diseñados para la mujer que exige lo mejor. Formulados con ingredientes premium para resultados extraordinarios.</p>
+      <p class="hero-sub">Cosméticos de alta gama para la mujer que exige lo mejor. Ingredientes premium, resultados extraordinarios.</p>
       <div>
-        <button class="btn-gold" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'})">Explorar colección</button>
-        <button class="btn-outline">Nuestro ritual</button>
+        <button class="btn-main" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'})">Explorar colección</button>
+        <button class="btn-ghost">Nuestro ritual</button>
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-block" onclick="showDetail(1)">💛<span class="hero-badge">Nuevo</span></div>
-      <div class="hero-block" onclick="showDetail(2)">💄</div>
-      <div class="hero-block" onclick="showDetail(5)">🎨<span class="hero-badge">Top</span></div>
-      <div class="hero-block" onclick="showDetail(11)">🌹</div>
+      <div class="hero-block" onclick="showDetail(1)">
+        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80" alt="Sérum">
+        <span class="hero-badge">Nuevo</span>
+      </div>
+      <div class="hero-block" onclick="showDetail(2)">
+        <img src="https://images.unsplash.com/photo-1586495777744-4e6232bf4400?w=400&q=80" alt="Labial">
+      </div>
+      <div class="hero-block" onclick="showDetail(5)">
+        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80" alt="Paleta">
+        <span class="hero-badge">Top</span>
+      </div>
+      <div class="hero-block" onclick="showDetail(11)">
+        <img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?w=400&q=80" alt="Crema">
+      </div>
     </div>
   </section>
+
   <div class="strip">
     <div class="strip-item"><div class="strip-num">12</div><div class="strip-label">Productos premium</div></div>
     <div class="strip-item"><div class="strip-num">100%</div><div class="strip-label">Envío a México</div></div>
     <div class="strip-item"><div class="strip-num">Cruelty<br>free</div><div class="strip-label">Sin pruebas en animales</div></div>
   </div>
+
   <div id="coleccion">
     <p class="section-eyebrow">Colección completa</p>
     <div class="cats" id="cats"></div>
-    <div class="products-grid" id="products"></div>
+    <div class="pgrid" id="products"></div>
   </div>
   <footer>MAGNUS © 2025 — México — Todos los derechos reservados</footer>
 </div>
 
-<!-- PRODUCT DETAIL -->
+<!-- DETAIL -->
 <div class="page" id="page-detail"></div>
 
 <!-- CHECKOUT -->
@@ -271,7 +292,7 @@
   <div id="coBody"></div>
 </div>
 
-<!-- CART DRAWER -->
+<!-- CART -->
 <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-head">
@@ -289,58 +310,64 @@
 </div>
 
 <script>
+const IMGS={
+  1:'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80',
+  2:'https://images.unsplash.com/photo-1586495777744-4e6232bf4400?w=600&q=80',
+  3:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&q=80',
+  4:'https://images.unsplash.com/photo-1631214524020-3c69a672a99a?w=600&q=80',
+  5:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&q=80',
+  6:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80',
+  7:'https://images.unsplash.com/photo-1553531087-b25d4e1e4e85?w=600&q=80',
+  8:'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80',
+  9:'https://images.unsplash.com/photo-1614112553952-14e471a71ac8?w=600&q=80',
+  10:'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&q=80',
+  11:'https://images.unsplash.com/photo-1601049676869-702ea24cfd58?w=600&q=80',
+  12:'https://images.unsplash.com/photo-1643185539104-3622eb1f2283?w=600&q=80',
+};
+
 const products=[
-  {id:1,icon:'💛',badge:'Más vendido',cat:'Sérum',name:'Sérum Áureo Regenerador',price:1290,tagline:'Oro líquido para tu piel',desc:'Formulado con partículas de oro de 24k y ácido hialurónico de triple peso molecular. Penetra en las capas más profundas de la dermis para una hidratación sostenida de 72 horas. Resultados visibles desde la primera aplicación.',specs:[{l:'Volumen',v:'30 ml'},{l:'Tipo de piel',v:'Todos los tipos, especial piel seca y mixta'},{l:'Textura',v:'Sérum ligero, absorción inmediata'},{l:'Acabado',v:'Luminoso, efecto glow natural'},{l:'Fragancia',v:'Rosa de Damasco y sándalo blanco'},{l:'FPS',v:'No incluido — usar protector solar'}],ingredients:['Partículas Au 24k','Ácido hialurónico 3x','Niacinamida 5%','Péptidos de seda','Rosa mosqueta','Vitamina E','Aloe vera BIO','Escualano'],how:['Limpia tu rostro con agua tibia y gel limpiador suave.','Aplica 3-4 gotas sobre yemas de los dedos.','Distribuye suavemente en rostro, cuello y escote con movimientos ascendentes.','Permite absorción completa (1-2 min) antes de continuar con hidratante.','Usar mañana y noche para resultados óptimos.'],reviews:[{name:'Valentina M.',stars:5,text:'Mi piel cambió en literalmente 5 días. El sérum se absorbe al instante y el glow que da es increíble.',date:'Marzo 2025'},{name:'Sofía R.',stars:5,text:'Llevo 3 semanas usándolo y mis manchas han aclarado notablemente. El aroma es delicioso.',date:'Febrero 2025'}]},
-  {id:2,icon:'💄',badge:'',cat:'Labios',name:'Labial Magnus Noir',price:690,tagline:'Intensidad sin compromiso',desc:'Labial de larga duración con fórmula enriquecida con aceite de argán y vitamina E. Acabado mate de terciopelo que no reseca. Pigmentación de alta concentración para un color intenso y uniforme desde la primera pasada.',specs:[{l:'Contenido neto',v:'3.5 g'},{l:'Acabado',v:'Mate aterciopelado'},{l:'Duración',v:'Hasta 12 horas sin retoque'},{l:'Resistencia',v:'Transfiere menos, resistente a bebidas'},{l:'Fragancia',v:'Vainilla y cereza negra'},{l:'Dermatológicamente',v:'Testado. Apto piel sensible'}],ingredients:['Aceite de argán orgánico','Vitamina E','Manteca de karité','Cera de abeja','Pigmentos minerales','Aceite de rosa mosqueta','Extracto de granada'],how:['Exfolia labios con azúcar e hidrátalos previamente.','Delinea el contorno con lápiz labial a tono (opcional).','Aplica el labial desde el centro hacia las comisuras.','Para mayor duración: aplica, presiona con papel tissue, aplica segunda capa.','Retoca con el dedo para difuminar los bordes.'],reviews:[{name:'Isabella G.',stars:5,text:'El mejor labial que he tenido. El color es exactamente como en la foto, el acabado mate es suave y dura un montón.',date:'Abril 2025'},{name:'Mariana L.',stars:5,text:'No se transfiere al vaso, no reseca y el aroma es sutil y delicioso.',date:'Marzo 2025'}]},
-  {id:3,icon:'✨',badge:'Nuevo',cat:'Rostro',name:'Base Luminosa Gold',price:980,tagline:'Tu segunda piel perfecta',desc:'Base de cobertura media-alta con tecnología de microesferas de luz que difuminan imperfecciones y unifican el tono. Acabado satinado natural con FPS 30.',specs:[{l:'Contenido neto',v:'30 ml'},{l:'Cobertura',v:'Media-alta, buildable'},{l:'Acabado',v:'Satinado natural'},{l:'FPS',v:'30 incluido'},{l:'Tonos',v:'12 tonos disponibles'},{l:'Duración',v:'Hasta 16 horas'}],ingredients:['Ácido hialurónico','Microesferas de silica','Niacinamida 3%','FPS 30 mineral','Glicerina vegetal','Vitamina C'],how:['Aplica primer hidratante y deja absorber.','Pon una pequeña cantidad en el dorso de la mano.','Aplica con brocha, esponja húmeda o dedos.','Construye cobertura adicional donde necesites.','Fija con polvo translúcido.'],reviews:[{name:'Fernanda P.',stars:5,text:'Encontré mi tono exacto y la cobertura es perfecta.',date:'Mayo 2025'},{name:'Andrea C.',stars:4,text:'Excelente base, el FPS es un plus enorme.',date:'Abril 2025'}]},
-  {id:4,icon:'🌿',badge:'',cat:'Cuidado',name:'Desmaquillante Micellar Luxury',price:520,tagline:'Limpieza profunda, cero agresión',desc:'Agua micelar de alta pureza con extracto de nenúfar blanco y agua termal de los Alpes. Elimina maquillaje resistente al agua sin frotar. Sin alcohol, sin fragancia, sin parabenos.',specs:[{l:'Volumen',v:'200 ml'},{l:'Tipo de piel',v:'Piel sensible y reactiva'},{l:'Fórmula',v:'Sin alcohol, sin parabenos'},{l:'pH',v:'5.5 equilibrado'},{l:'Certificación',v:'Dermatológicamente testado'},{l:'Uso',v:'Ojos, labios y rostro'}],ingredients:['Agua termal de los Alpes','Extracto de nenúfar blanco','Micelas purificantes','Glicerina vegetal','Pantenol','Alantoína','Bisabolol'],how:['Impregna un disco de algodón.','Presiona sobre ojos cerrados 10 segundos.','Desliza suavemente sin frotar.','Repite en labios y rostro.','No es necesario enjuagar.'],reviews:[{name:'Lucía M.',stars:5,text:'No me irrita nada. Retira hasta la máscara waterproof sin esfuerzo.',date:'Marzo 2025'}]},
-  {id:5,icon:'🎨',badge:'Exclusivo',cat:'Ojos',name:'Paleta Ojos Noir & Or',price:1150,tagline:'12 tonos, infinitas miradas',desc:'Paleta de 12 sombras con fórmula de alta pigmentación. Combinación de tonos mate profundos, satinados y brillantes con destellos dorados.',specs:[{l:'Contenido',v:'12 sombras × 1.5g'},{l:'Acabados',v:'4 mate + 4 satinado + 4 brillante'},{l:'Pigmentación',v:'Ultra pigmentada'},{l:'Duración',v:'Hasta 14 horas'},{l:'Espejo',v:'Incluido'},{l:'Aplicador',v:'Pincel doble incluido'}],ingredients:['Aceite de jojoba','Mica dorada','Pigmentos minerales','Vitamina E','Talco micronizado','Extracto de camomila'],how:['Aplica primer de sombras.','Usa tonos mate claros como base.','Aplica tono oscuro en el pliegue.','Agrega tono brillante en el centro.','Delinea con tono más oscuro.'],reviews:[{name:'Daniela F.',stars:5,text:'La pigmentación es de otro nivel. Los tonos dorados son espectaculares.',date:'Abril 2025'},{name:'Natalia V.',stars:5,text:'El packaging es lujoso y las sombras difuminan perfectísimo.',date:'Marzo 2025'}]},
-  {id:6,icon:'🌟',badge:'',cat:'Rostro',name:'Contorno Magnus Sculpt',price:760,tagline:'Esculpe, ilumina, conquista',desc:'Dúo de bronzer e iluminador en una sola paleta. Bronzer de tono cálido e iluminador dorado para un destello de alta costura.',specs:[{l:'Contenido',v:'Bronzer 8g + Iluminador 6g'},{l:'Acabado bronzer',v:'Mate-satinado'},{l:'Acabado iluminador',v:'Brillante dorado'},{l:'Duración',v:'Hasta 12 horas'},{l:'Aplicador',v:'Pincel incluido'},{l:'Espejo',v:'Incluido'}],ingredients:['Mica dorada','Óxidos de hierro','Pigmentos minerales','Aceite de argán','Vitamina E','Silica esférica'],how:['Aplica bronzer en sienes, pómulos y mandíbula.','Difumina con movimientos circulares.','Aplica iluminador en pómulos y arco de cupido.','Para más intensidad aplica húmedo.','Finaliza con fijador spray.'],reviews:[{name:'Karla B.',stars:5,text:'El iluminador dorado es precioso. El bronzer es el más natural que he probado.',date:'Mayo 2025'}]},
-  {id:7,icon:'💋',badge:'Nuevo',cat:'Labios',name:'Labial Velvet Dorado',price:750,tagline:'Un toque de oro en tus labios',desc:'Labial cremoso con partículas de oro microfino. Acabado semi-brillante que hidrata y define con aceite de rosa mosqueta.',specs:[{l:'Contenido neto',v:'3.8 g'},{l:'Acabado',v:'Semi-brillante dorado'},{l:'Hidratación',v:'8 horas'},{l:'Resistencia',v:'Retoca cada 4-5 horas'},{l:'Fragancia',v:'Pétalos de rosa y miel'},{l:'Dermatológicamente',v:'Testado'}],ingredients:['Partículas de oro microfino','Aceite de rosa mosqueta','Vitamina E','Aceite de argán','Cera de candelilla','Manteca de mango'],how:['Aplica siguiendo el contorno natural.','Usa delineador a tono primero (opcional).','Presiona labios para distribuir.','Segunda capa para más intensidad.','Presiona con tissue para fijar.'],reviews:[{name:'Paola V.',stars:5,text:'El destello dorado es increíble, muy elegante. El aroma a rosas es sutilísimo.',date:'Abril 2025'}]},
-  {id:8,icon:'💫',badge:'',cat:'Rostro',name:'Corrector Pro Cover',price:590,tagline:'Cobertura que libera',desc:'Corrector de alta cobertura con cafeína y vitamina K para desinflamar y reducir ojeras con uso continuo.',specs:[{l:'Contenido neto',v:'6 ml'},{l:'Cobertura',v:'Alta, buildable'},{l:'Acabado',v:'Natural'},{l:'Tonos',v:'8 tonos disponibles'},{l:'Activos',v:'Cafeína + Vitamina K'},{l:'Duración',v:'Hasta 14 horas'}],ingredients:['Cafeína 2%','Vitamina K','Ácido hialurónico','Glicerina vegetal','Extracto de manzanilla','Pantenol'],how:['Aplica después de la base o directamente.','Pon pequeños puntos bajo los ojos.','Difumina con el dedo anular.','Construye por capas finas.','Fija con polvo translúcido.'],reviews:[{name:'Diana R.',stars:4,text:'Cubre mis ojeras marcadas. El acabado es muy natural, no se nota.',date:'Marzo 2025'}]},
-  {id:9,icon:'🍊',badge:'Top rated',cat:'Sérum',name:'Sérum Vitamina C Glow',price:1080,tagline:'Luminosidad desde el primer día',desc:'Sérum con vitamina C estabilizada al 15%. Ilumina, unifica el tono y reduce manchas en 4 semanas.',specs:[{l:'Volumen',v:'30 ml'},{l:'Vitamina C',v:'15% encapsulada'},{l:'Niacinamida',v:'3%'},{l:'Textura',v:'Gel-sérum ligero'},{l:'Uso',v:'Solo en mañana + FPS'},{l:'Resultados',v:'Desde semana 1'}],ingredients:['Vitamina C 15%','Niacinamida 3%','Extracto de cúrcuma','Ácido ferúlico','Vitamina E','Té verde','Agua de rosas'],how:['Solo rutina de mañana.','Limpia y aplica tónico.','3-4 gotas de centro hacia afuera.','Absorción antes del hidratante.','Siempre termina con FPS 30+.'],reviews:[{name:'Gabriela S.',stars:5,text:'Mis manchas del sol aclararon en 3 semanas. El glow es real.',date:'Mayo 2025'},{name:'Paola R.',stars:4,text:'No pica como otros con vitamina C. El precio es justo.',date:'Abril 2025'}]},
-  {id:10,icon:'🖤',badge:'',cat:'Ojos',name:'Máscara Volume Noir',price:480,tagline:'Mirada que impacta',desc:'Máscara waterproof buildable con vitamina B5. Cepillo de precisión en espiral que separa y define cada pestaña.',specs:[{l:'Contenido',v:'8 ml'},{l:'Fórmula',v:'Waterproof buildable'},{l:'Cepillo',v:'Espiral de precisión'},{l:'Activo',v:'Vitamina B5'},{l:'Duración',v:'Hasta 16 horas'},{l:'Retiro',v:'Desmaquillante bifásico'}],ingredients:['Vitamina B5','Cera de carnauba','Cera de abeja','Extracto de bambú','Aceite de argán','Pigmento negro carbón'],how:['Riza las pestañas antes (opcional).','Posiciona el cepillo en la base.','Aplica zigzagueando raíz a punta.','Deja secar 30 seg y aplica 2a capa.','Usa la punta para el párpado inferior.'],reviews:[{name:'Renata L.',stars:5,text:'No se corre con el calor de Cancún. El volumen es impresionante.',date:'Abril 2025'}]},
-  {id:11,icon:'🌹',badge:'Bestseller',cat:'Cuidado',name:'Crema Hidratante Royal',price:890,tagline:'El lujo que tu piel merece',desc:'Crema hidratante con manteca de karité, extracto de perla y aceite de rosa mosqueta. 24 horas de hidratación y efecto tensor.',specs:[{l:'Contenido neto',v:'50 ml'},{l:'Textura',v:'Rica, aterciopelada'},{l:'Hidratación',v:'24 horas'},{l:'Efecto tensor',v:'Visible desde primera aplicación'},{l:'Fragancia',v:'Rosa francesa y jazmín'},{l:'Uso',v:'Mañana y noche'}],ingredients:['Manteca de karité','Extracto de perla','Aceite de rosa mosqueta','Ácido hialurónico','Ceramidas vegetales','Escualano','Jazmín'],how:['Aplica como último paso de rutina.','Cantidad de un garbanzo para el rostro.','Aplica en puntos y distribuye ascendente.','De noche aplica capa más generosa.','Deja actuar mientras duermes.'],reviews:[{name:'Carmen A.',stars:5,text:'La mejor crema que he probado. El aroma es divino.',date:'Mayo 2025'},{name:'Valeria N.',stars:5,text:'Textura lujosa, se absorbe rápido. Vale cada peso.',date:'Abril 2025'}]},
-  {id:12,icon:'💎',badge:'',cat:'Cuidado',name:'Fijador Spray Crystal',price:420,tagline:'El sello de tu maquillaje perfecto',desc:'Spray fijador con micropartículas de cristal. Hasta 16 horas de fijación con acabado fresco y natural.',specs:[{l:'Contenido',v:'100 ml'},{l:'Duración',v:'Hasta 16 horas'},{l:'Acabado',v:'Fresco, sin pegajosidad'},{l:'Activos',v:'Agua de rosas + Pepino'},{l:'Apto para',v:'Todos los tipos'},{l:'Distancia',v:'20-25 cm del rostro'}],ingredients:['Agua de rosas','Extracto de pepino','Glicerina vegetal','Micropartículas de cristal','Aloe vera','Pantenol','Té verde'],how:['Último paso de tu rutina.','Mantén a 20-25 cm del rostro.','Pulveriza en X y luego en T.','Deja secar al aire.','Reaplica durante el día para refrescar.'],reviews:[{name:'Sofía H.',stars:4,text:'Mi maquillaje duró todo el día. El aroma a rosas es muy agradable.',date:'Marzo 2025'}]},
+  {id:1,badge:'Más vendido',cat:'Sérum',name:'Sérum Áureo Regenerador',price:1290,tagline:'Oro líquido para tu piel',desc:'Formulado con partículas de oro de 24k y ácido hialurónico de triple peso molecular. Hidratación sostenida de 72 horas. Resultados visibles desde la primera aplicación.',specs:[{l:'Volumen',v:'30 ml'},{l:'Tipo de piel',v:'Todos los tipos'},{l:'Textura',v:'Sérum ligero'},{l:'Acabado',v:'Luminoso, glow natural'},{l:'Fragancia',v:'Rosa de Damasco y sándalo'},{l:'FPS',v:'No incluido'}],ingredients:['Partículas Au 24k','Ácido hialurónico 3x','Niacinamida 5%','Péptidos de seda','Rosa mosqueta','Vitamina E','Aloe vera BIO'],how:['Limpia tu rostro con agua tibia.','Aplica 3-4 gotas sobre los dedos.','Distribuye en rostro, cuello y escote.','Permite absorción completa 1-2 min.','Usar mañana y noche.'],reviews:[{name:'Valentina M.',stars:5,text:'Mi piel cambió en 5 días. El glow es increíble.',date:'Marzo 2025'},{name:'Sofía R.',stars:5,text:'Mis manchas han aclarado notablemente. El aroma es delicioso.',date:'Febrero 2025'}]},
+  {id:2,badge:'',cat:'Labios',name:'Labial Magnus Noir',price:690,tagline:'Intensidad sin compromiso',desc:'Labial de larga duración con aceite de argán y vitamina E. Acabado mate de terciopelo que no reseca. Pigmentación de alta concentración desde la primera pasada.',specs:[{l:'Contenido neto',v:'3.5 g'},{l:'Acabado',v:'Mate aterciopelado'},{l:'Duración',v:'Hasta 12 horas'},{l:'Resistencia',v:'Resistente a bebidas'},{l:'Fragancia',v:'Vainilla y cereza negra'},{l:'Dermatológicamente',v:'Testado'}],ingredients:['Aceite de argán','Vitamina E','Manteca de karité','Cera de abeja','Pigmentos minerales','Rosa mosqueta'],how:['Exfolia e hidrata labios previamente.','Delinea el contorno (opcional).','Aplica del centro hacia las comisuras.','Presiona con tissue y aplica 2a capa.','Retoca con el dedo para difuminar.'],reviews:[{name:'Isabella G.',stars:5,text:'El mejor labial que he tenido. Dura un montón.',date:'Abril 2025'},{name:'Mariana L.',stars:5,text:'No se transfiere al vaso. El aroma es sutil y delicioso.',date:'Marzo 2025'}]},
+  {id:3,badge:'Nuevo',cat:'Rostro',name:'Base Luminosa Gold',price:980,tagline:'Tu segunda piel perfecta',desc:'Cobertura media-alta con microesferas de luz. Acabado satinado natural con FPS 30. Ácido hialurónico que hidrata mientras maquillas.',specs:[{l:'Contenido neto',v:'30 ml'},{l:'Cobertura',v:'Media-alta, buildable'},{l:'Acabado',v:'Satinado natural'},{l:'FPS',v:'30 incluido'},{l:'Tonos',v:'12 tonos disponibles'},{l:'Duración',v:'Hasta 16 horas'}],ingredients:['Ácido hialurónico','Microesferas de silica','Niacinamida 3%','FPS 30 mineral','Glicerina vegetal','Vitamina C'],how:['Aplica primer y deja absorber.','Cantidad de un chícharo en el dorso.','Aplica con brocha, esponja o dedos.','Construye capas donde necesites.','Fija con polvo translúcido.'],reviews:[{name:'Fernanda P.',stars:5,text:'La cobertura es perfecta. No se ve a parches.',date:'Mayo 2025'},{name:'Andrea C.',stars:4,text:'Excelente base. El FPS es un plus enorme.',date:'Abril 2025'}]},
+  {id:4,badge:'',cat:'Cuidado',name:'Desmaquillante Micellar Luxury',price:520,tagline:'Limpieza profunda, cero agresión',desc:'Agua micelar con nenúfar blanco y agua termal de los Alpes. Elimina maquillaje waterproof sin frotar. Sin alcohol, sin fragancia, sin parabenos.',specs:[{l:'Volumen',v:'200 ml'},{l:'Tipo de piel',v:'Piel sensible'},{l:'Fórmula',v:'Sin alcohol ni parabenos'},{l:'pH',v:'5.5 equilibrado'},{l:'Certificación',v:'Dermatológicamente testado'},{l:'Uso',v:'Ojos, labios y rostro'}],ingredients:['Agua termal de los Alpes','Nenúfar blanco','Micelas purificantes','Glicerina vegetal','Pantenol','Alantoína'],how:['Impregna un disco de algodón.','Presiona sobre ojos cerrados 10 seg.','Desliza sin frotar.','Repite en labios y rostro.','No es necesario enjuagar.'],reviews:[{name:'Lucía M.',stars:5,text:'Retira hasta la máscara waterproof sin esfuerzo.',date:'Marzo 2025'}]},
+  {id:5,badge:'Exclusivo',cat:'Ojos',name:'Paleta Ojos Noir & Or',price:1150,tagline:'12 tonos, infinitas miradas',desc:'12 sombras de alta pigmentación. Tonos mate profundos, satinados y brillantes con destellos dorados. Aceite de jojoba para aplicación cremosa.',specs:[{l:'Contenido',v:'12 × 1.5g'},{l:'Acabados',v:'4 mate + 4 satinado + 4 brillante'},{l:'Pigmentación',v:'Ultra pigmentada'},{l:'Duración',v:'Hasta 14 horas'},{l:'Espejo',v:'Tamaño completo'},{l:'Aplicador',v:'Pincel doble incluido'}],ingredients:['Aceite de jojoba','Mica dorada','Pigmentos minerales','Vitamina E','Talco micronizado','Camomila'],how:['Aplica primer de sombras.','Base mate clara en todo el párpado.','Tono oscuro en el pliegue.','Brillante dorado en el centro.','Delinea para mayor intensidad.'],reviews:[{name:'Daniela F.',stars:5,text:'La pigmentación es de otro nivel. Los dorados son espectaculares.',date:'Abril 2025'},{name:'Natalia V.',stars:5,text:'El packaging es lujoso y difuminan perfectísimo.',date:'Marzo 2025'}]},
+  {id:6,badge:'',cat:'Rostro',name:'Contorno Magnus Sculpt',price:760,tagline:'Esculpe, ilumina, conquista',desc:'Dúo de bronzer e iluminador. Bronzer cálido e iluminador dorado para un destello de alta costura. Fórmula micro-pulverizada.',specs:[{l:'Contenido',v:'Bronzer 8g + Iluminador 6g'},{l:'Acabado bronzer',v:'Mate-satinado'},{l:'Iluminador',v:'Destellos dorados finos'},{l:'Duración',v:'Hasta 12 horas'},{l:'Aplicador',v:'Pincel incluido'},{l:'Espejo',v:'Incluido'}],ingredients:['Mica dorada','Óxidos de hierro','Pigmentos minerales','Aceite de argán','Vitamina E','Silica esférica'],how:['Bronzer en sienes, pómulos y mandíbula.','Difumina con movimientos circulares.','Iluminador en pómulos y arco de cupido.','Aplica húmedo para más intensidad.','Finaliza con spray fijador.'],reviews:[{name:'Karla B.',stars:5,text:'El iluminador dorado es precioso. El bronzer muy natural.',date:'Mayo 2025'}]},
+  {id:7,badge:'Nuevo',cat:'Labios',name:'Labial Velvet Dorado',price:750,tagline:'Un toque de oro en tus labios',desc:'Partículas de oro microfino. Acabado semi-brillante que hidrata y define. Rosa mosqueta para labios suaves todo el día.',specs:[{l:'Contenido neto',v:'3.8 g'},{l:'Acabado',v:'Semi-brillante dorado'},{l:'Hidratación',v:'8 horas'},{l:'Fragancia',v:'Pétalos de rosa y miel'},{l:'Dermatológicamente',v:'Testado'},{l:'Resistencia',v:'Retoca cada 4-5 horas'}],ingredients:['Partículas oro microfino','Rosa mosqueta','Vitamina E','Aceite de argán','Cera de candelilla','Manteca de mango'],how:['Aplica siguiendo el contorno.','Delineador a tono (opcional).','Presiona labios para distribuir.','Segunda capa para más intensidad.','Presiona con tissue para fijar.'],reviews:[{name:'Paola V.',stars:5,text:'El destello dorado es increíble y muy elegante.',date:'Abril 2025'}]},
+  {id:8,badge:'',cat:'Rostro',name:'Corrector Pro Cover',price:590,tagline:'Cobertura que libera',desc:'Alta cobertura con cafeína y vitamina K. Desinflamante y reductor de ojeras con uso continuo. Sin efecto máscara.',specs:[{l:'Contenido neto',v:'6 ml'},{l:'Cobertura',v:'Alta, buildable'},{l:'Acabado',v:'Natural'},{l:'Tonos',v:'8 tonos'},{l:'Activos',v:'Cafeína + Vitamina K'},{l:'Duración',v:'Hasta 14 horas'}],ingredients:['Cafeína 2%','Vitamina K','Ácido hialurónico','Glicerina vegetal','Manzanilla','Pantenol'],how:['Aplica después de la base.','Puntos bajo los ojos e imperfecciones.','Difumina con el dedo anular.','Construye por capas finas.','Fija con polvo translúcido.'],reviews:[{name:'Diana R.',stars:4,text:'Cubre ojeras marcadas. Acabado muy natural.',date:'Marzo 2025'}]},
+  {id:9,badge:'Top rated',cat:'Sérum',name:'Sérum Vitamina C Glow',price:1080,tagline:'Luminosidad desde el primer día',desc:'Vitamina C estabilizada al 15%. Ilumina, unifica el tono y reduce manchas en 4 semanas. Con niacinamida y cúrcuma.',specs:[{l:'Volumen',v:'30 ml'},{l:'Vitamina C',v:'15% encapsulada'},{l:'Niacinamida',v:'3%'},{l:'Textura',v:'Gel-sérum ligero'},{l:'Uso',v:'Solo mañana + FPS'},{l:'Resultados',v:'Desde semana 1'}],ingredients:['Vitamina C 15%','Niacinamida 3%','Cúrcuma','Ácido ferúlico','Vitamina E','Té verde','Agua de rosas'],how:['Solo en rutina de mañana.','Limpia y aplica tónico.','3-4 gotas de centro hacia afuera.','Absorción antes del hidratante.','Siempre termina con FPS 30+.'],reviews:[{name:'Gabriela S.',stars:5,text:'Manchas del sol aclararon en 3 semanas.',date:'Mayo 2025'},{name:'Paola R.',stars:4,text:'No pica como otros. Precio justo.',date:'Abril 2025'}]},
+  {id:10,badge:'',cat:'Ojos',name:'Máscara Volume Noir',price:480,tagline:'Mirada que impacta',desc:'Fórmula waterproof buildable con vitamina B5. Cepillo espiral de precisión que separa y define cada pestaña.',specs:[{l:'Contenido',v:'8 ml'},{l:'Fórmula',v:'Waterproof buildable'},{l:'Cepillo',v:'Espiral de precisión'},{l:'Activo',v:'Vitamina B5'},{l:'Duración',v:'Hasta 16 horas'},{l:'Retiro',v:'Desmaquillante bifásico'}],ingredients:['Vitamina B5','Cera de carnauba','Cera de abeja','Bambú','Aceite de argán','Pigmento negro carbón'],how:['Riza pestañas antes (opcional).','Cepillo en la base de pestañas.','Zigzag de raíz a punta.','Espera 30 seg, aplica 2a capa.','Punta del cepillo para párpado inferior.'],reviews:[{name:'Renata L.',stars:5,text:'No se corre con el calor. Volumen impresionante.',date:'Abril 2025'}]},
+  {id:11,badge:'Bestseller',cat:'Cuidado',name:'Crema Hidratante Royal',price:890,tagline:'El lujo que tu piel merece',desc:'Karité, extracto de perla y rosa mosqueta. 24 horas de hidratación profunda con efecto tensor visible.',specs:[{l:'Contenido neto',v:'50 ml'},{l:'Textura',v:'Rica, aterciopelada'},{l:'Hidratación',v:'24 horas'},{l:'Efecto tensor',v:'Visible desde 1a aplicación'},{l:'Fragancia',v:'Rosa francesa y jazmín'},{l:'Uso',v:'Mañana y noche'}],ingredients:['Manteca de karité','Extracto de perla','Rosa mosqueta','Ácido hialurónico','Ceramidas vegetales','Escualano','Jazmín'],how:['Último paso de tu rutina.','Tamaño de un garbanzo.','Puntos y distribuye ascendente.','De noche aplica capa generosa.','Deja actuar mientras duermes.'],reviews:[{name:'Carmen A.',stars:5,text:'La mejor crema que he probado. Aroma divino.',date:'Mayo 2025'},{name:'Valeria N.',stars:5,text:'Textura lujosa, se absorbe rápido.',date:'Abril 2025'}]},
+  {id:12,badge:'',cat:'Cuidado',name:'Fijador Spray Crystal',price:420,tagline:'El sello de tu maquillaje perfecto',desc:'Micropartículas de cristal. Hasta 16 horas de fijación. Acabado fresco y natural con agua de rosas y pepino.',specs:[{l:'Contenido',v:'100 ml'},{l:'Duración',v:'Hasta 16 horas'},{l:'Acabado',v:'Fresco, sin pegajosidad'},{l:'Activos',v:'Agua de rosas + Pepino'},{l:'Apto para',v:'Todos los tipos'},{l:'Distancia',v:'20-25 cm del rostro'}],ingredients:['Agua de rosas','Extracto de pepino','Glicerina vegetal','Micropartículas de cristal','Aloe vera','Pantenol'],how:['Último paso de maquillaje.','Sostén a 20-25 cm del rostro.','Pulveriza en X y luego en T.','Deja secar al aire.','Reaplica para refrescar durante el día.'],reviews:[{name:'Sofía H.',stars:4,text:'Mi maquillaje duró todo el día. Aroma a rosas agradable.',date:'Marzo 2025'}]},
 ];
 
 const estados=['Aguascalientes','Baja California','Baja California Sur','Campeche','Chiapas','Chihuahua','Ciudad de México','Coahuila','Colima','Durango','Guanajuato','Guerrero','Hidalgo','Jalisco','Estado de México','Michoacán','Morelos','Nayarit','Nuevo León','Oaxaca','Puebla','Querétaro','Quintana Roo','San Luis Potosí','Sinaloa','Sonora','Tabasco','Tamaulipas','Tlaxcala','Veracruz','Yucatán','Zacatecas'];
 const catList=['Todos','Sérum','Labios','Rostro','Ojos','Cuidado'];
-let cart={};
-let activeCat='Todos';
-let prevPage='home';
-let coStep=1;
-let coShipping='standard';
-let couponApplied=false;
-let coFormData={};
+let cart={},activeCat='Todos',coStep=1,coShipping='standard',couponApplied=false,coFormData={};
 
-// PAGE ROUTING
 function showPage(p){
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
-  const backBtn=document.getElementById('backBtn');
-  backBtn.className='back-btn'+(p!=='home'?' show':'');
+  document.getElementById('backBtn').className='back-btn'+(p!=='home'?' show':'');
   window.scrollTo(0,0);
-  if(p==='checkout'){initCheckout();}
+  if(p==='checkout')initCheckout();
 }
-function goBack(){
-  const active=[...document.querySelectorAll('.page.active')][0];
-  if(active&&active.id==='page-detail') showPage('home');
-  else showPage('home');
-}
+function goBack(){showPage('home');}
 
-// CATALOG
 function renderCatalog(){
   document.getElementById('cats').innerHTML=catList.map(c=>`<div class="cat${c===activeCat?' active':''}" onclick="filterCat('${c}')">${c}</div>`).join('');
   const filtered=activeCat==='Todos'?products:products.filter(p=>p.cat===activeCat);
   document.getElementById('products').innerHTML=filtered.map(p=>{
     const inCart=cart[p.id]&&cart[p.id].qty>0;
     return`<div class="pcard">
-      <div class="pthumb" onclick="showDetail(${p.id})">${p.icon}${p.badge?`<span class="pbadge">${p.badge}</span>`:''}</div>
+      <div class="pthumb" onclick="showDetail(${p.id})">
+        <img src="${IMGS[p.id]}" alt="${p.name}" loading="lazy">
+        ${p.badge?`<span class="pbadge">${p.badge}</span>`:''}
+      </div>
       <div class="pinfo">
         <p class="pcat">${p.cat}</p>
         <p class="pname" onclick="showDetail(${p.id})">${p.name}</p>
-        <div class="prow" style="margin-top:.5rem">
+        <p class="pdesc">${p.desc.substring(0,70)}...</p>
+        <div class="prow">
           <span class="pprice">$${p.price.toLocaleString()} MXN</span>
           <button class="padd${inCart?' added':''}" onclick="addToCart(${p.id})">${inCart?'✓':'+ Agregar'}</button>
         </div>
@@ -350,17 +377,18 @@ function renderCatalog(){
 }
 function filterCat(c){activeCat=c;renderCatalog();}
 
-// PRODUCT DETAIL
 function showDetail(id){
   const p=products.find(x=>x.id===id);
-  const det=document.getElementById('page-detail');
-  det.innerHTML=buildDetail(p,'specs');
+  document.getElementById('page-detail').innerHTML=buildDetail(p,'specs');
   showPage('detail');
 }
 function buildDetail(p,tab){
   const inCart=cart[p.id]&&cart[p.id].qty>0;
   return`<div class="d-hero">
-    <div class="d-img"><span style="font-size:96px">${p.icon}</span>${p.badge?`<span class="d-badge">${p.badge}</span>`:''}</div>
+    <div class="d-img">
+      <img src="${IMGS[p.id]}" alt="${p.name}">
+      ${p.badge?`<span class="d-badge">${p.badge}</span>`:''}
+    </div>
     <div class="d-info">
       <p class="d-eyebrow">${p.cat} · MAGNUS</p>
       <h1 class="d-name">${p.name}</h1>
@@ -384,7 +412,7 @@ function buildDetail(p,tab){
     <div class="spec-grid">${p.specs.map(s=>`<div class="spec-item"><div class="spec-label">${s.l}</div><div class="spec-val">${s.v}</div></div>`).join('')}</div>
   </div>
   <div class="d-panel${tab==='ing'?' active':''}">
-    <p style="font-size:11px;color:var(--muted);font-family:sans-serif;margin-bottom:.8rem;line-height:1.7">Ingredientes activos principales. Sin parabenos, sulfatos ni colorantes artificiales.</p>
+    <p style="font-size:14px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300;margin-bottom:1rem;line-height:1.7">Sin parabenos, sulfatos ni colorantes artificiales.</p>
     <div class="ing-list">${p.ingredients.map(i=>`<span class="ing">${i}</span>`).join('')}</div>
   </div>
   <div class="d-panel${tab==='how'?' active':''}">
@@ -394,27 +422,24 @@ function buildDetail(p,tab){
     <div class="reviews">${p.reviews.map(r=>`<div class="review"><div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><div class="rev-name">${r.name}</div><div class="rev-text">${r.text}</div><div class="rev-date">${r.date}</div></div>`).join('')}</div>
   </div>
   <p class="related-title">También te puede gustar</p>
-  <div class="products-grid">${products.filter(x=>x.id!==p.id).slice(0,3).map(x=>`
+  <div class="pgrid">${products.filter(x=>x.id!==p.id).slice(0,3).map(x=>`
     <div class="pcard" onclick="showDetail(${x.id})">
-      <div class="pthumb" style="font-size:52px">${x.icon}${x.badge?`<span class="pbadge">${x.badge}</span>`:''}</div>
+      <div class="pthumb"><img src="${IMGS[x.id]}" alt="${x.name}" loading="lazy">${x.badge?`<span class="pbadge">${x.badge}</span>`:''}</div>
       <div class="pinfo"><p class="pcat">${x.cat}</p><p class="pname">${x.name}</p>
-      <div class="prow"><span class="pprice">$${x.price.toLocaleString()} MXN</span><span style="font-size:9px;letter-spacing:2px;color:var(--gold);font-family:sans-serif">Ver →</span></div></div>
+      <div class="prow"><span class="pprice">$${x.price.toLocaleString()} MXN</span><span style="font-size:11px;letter-spacing:2px;color:var(--accent);font-family:'Jost',sans-serif">Ver →</span></div></div>
     </div>`).join('')}</div>
   <footer style="margin-top:1px">MAGNUS © 2025 — México — Todos los derechos reservados</footer>`;
 }
-function switchTab(id,tab){const p=products.find(x=>x.id===id);document.getElementById('page-detail').innerHTML=buildDetail(p,tab);}
+function switchTab(id,tab){document.getElementById('page-detail').innerHTML=buildDetail(products.find(x=>x.id===id),tab);}
 function addToCartDetail(id){addToCart(id);const btn=document.querySelector('.d-add');if(btn){btn.textContent='✓ En el carrito';btn.classList.add('added');}}
 
-// CART
 function addToCart(id){
   const p=products.find(x=>x.id===id);
   if(!cart[id])cart[id]={...p,qty:0};
-  cart[id].qty++;
-  updateCartUI();renderCatalog();
+  cart[id].qty++;updateCartUI();renderCatalog();
 }
 function changeQty(id,delta){
-  if(!cart[id])return;
-  cart[id].qty+=delta;
+  if(!cart[id])return;cart[id].qty+=delta;
   if(cart[id].qty<=0)delete cart[id];
   updateCartUI();renderCatalog();
 }
@@ -427,7 +452,7 @@ function updateCartUI(){
   const el=document.getElementById('drawerItems');
   if(!items.length){el.innerHTML='<div class="empty">Tu carrito está vacío</div>';return;}
   el.innerHTML=items.map(i=>`<div class="citem">
-    <div class="citem-icon">${i.icon}</div>
+    <div class="citem-icon"><img src="${IMGS[i.id]}" alt="${i.name}"></div>
     <div class="citem-info">
       <div class="citem-name">${i.name}</div>
       <div class="citem-price">$${i.price.toLocaleString()} MXN</div>
@@ -442,17 +467,13 @@ function updateCartUI(){
 }
 function toggleCart(){document.getElementById('drawer').classList.toggle('open');document.getElementById('overlay').classList.toggle('show');}
 
-// CHECKOUT
 function cartItems(){return Object.values(cart);}
 function subtotal(){return cartItems().reduce((s,i)=>s+i.price*i.qty,0);}
 function shippingCost(){if(subtotal()>=900)return 0;return coShipping==='express'?199:99;}
 function discount(){return couponApplied?Math.round(subtotal()*0.10):0;}
 function coTotal(){return subtotal()+shippingCost()-discount();}
 
-function initCheckout(){
-  coStep=1;couponApplied=false;coFormData={};
-  renderCoProgress();renderCoStep();renderCoSummary();
-}
+function initCheckout(){coStep=1;couponApplied=false;coFormData={};renderCoProgress();renderCoStep();}
 
 function renderCoProgress(){
   document.getElementById('coProgress').innerHTML=`
@@ -463,46 +484,48 @@ function renderCoProgress(){
     <div class="co-step"><div class="co-snum${coStep===3?' active':''}">${coStep===3?'✓':'3'}</div><span class="co-slabel${coStep===3?' active':''}">Confirmación</span></div>`;
 }
 
-function renderCoSummary(){
-  const items=cartItems();
-  const free=subtotal()>=900;
-  document.getElementById('coBody').querySelector&&document.getElementById('coBody').querySelector('.co-summary')&&(document.getElementById('coBody').querySelector('.co-summary').innerHTML=buildCoSummaryInner(items,free));
-}
-
-function buildCoSummaryInner(items,free){
+function buildSummaryHTML(){
+  const items=cartItems();const free=subtotal()>=900;
   return`<p class="co-title">Tu pedido</p>
-  <div>${items.map(i=>`<div class="s-item"><div class="s-icon">${i.icon}<span class="s-qty-badge">${i.qty}</span></div><span class="s-name">${i.name}</span><span class="s-price">$${(i.price*i.qty).toLocaleString()}</span></div>`).join('')}</div>
+  <div>${items.map(i=>`<div class="s-item">
+    <div class="s-wrap"><div class="s-icon"><img src="${IMGS[i.id]}" alt="${i.name}"></div><span class="s-qty-badge">${i.qty}</span></div>
+    <span class="s-name">${i.name}</span>
+    <span class="s-price">$${(i.price*i.qty).toLocaleString()}</span>
+  </div>`).join('')}</div>
   <div class="coupon-row"><input type="text" id="couponInput" placeholder="Código de descuento"><button class="coupon-btn" onclick="applyCoupon()">Aplicar</button></div>
-  <p class="coupon-ok" id="couponOk" style="${couponApplied?'display:block':''}">✓ MAGNUS10 aplicado — 10% de descuento</p>
+  <p class="coupon-ok" id="couponOk" style="${couponApplied?'display:block':''}">✓ MAGNUS10 — 10% de descuento aplicado</p>
   <div style="border-top:0.5px solid var(--dim);padding-top:1rem;margin-top:.5rem">
     <div class="tot-row"><span class="tot-label">Subtotal</span><span class="tot-val">$${subtotal().toLocaleString()} MXN</span></div>
-    <div class="tot-row"><span class="tot-label">Envío</span><span class="tot-val">${free?'<span style="color:#4caf50">Gratis</span>':'$'+shippingCost().toLocaleString()+' MXN'}</span></div>
-    ${couponApplied?`<div class="tot-row"><span class="tot-label" style="color:#4caf50">Descuento 10%</span><span class="tot-val" style="color:#4caf50">-$${discount().toLocaleString()} MXN</span></div>`:''}
-    <div class="tot-row" style="margin-top:.8rem;padding-top:.8rem;border-top:0.5px solid var(--dim)"><span class="tot-label" style="font-size:13px;color:var(--text)">Total</span><span class="tot-val" style="font-size:18px;color:var(--gold);font-weight:700">$${coTotal().toLocaleString()} MXN</span></div>
+    <div class="tot-row"><span class="tot-label">Envío</span><span class="tot-val">${free?'<span style="color:#7cb87c">Gratis</span>':'$'+shippingCost()+' MXN'}</span></div>
+    ${couponApplied?`<div class="tot-row"><span class="tot-label" style="color:#7cb87c">Descuento 10%</span><span class="tot-val" style="color:#7cb87c">-$${discount().toLocaleString()}</span></div>`:''}
+    <div class="tot-row" style="margin-top:.8rem;padding-top:.8rem;border-top:0.5px solid var(--dim)">
+      <span class="tot-label" style="font-size:15px;color:var(--text)">Total</span>
+      <span class="tot-val" style="font-size:20px;color:var(--accent);font-style:italic">$${coTotal().toLocaleString()} MXN</span>
+    </div>
   </div>`;
 }
 
 function applyCoupon(){
   const v=document.getElementById('couponInput').value.trim().toUpperCase();
   if(v==='MAGNUS10'){couponApplied=true;renderCoStep();}
-  else{const el=document.getElementById('couponInput');el.style.borderColor='#c0392b';setTimeout(()=>el.style.borderColor='',1500);}
+  else{const el=document.getElementById('couponInput');el.style.borderColor='#b05050';setTimeout(()=>el.style.borderColor='',1500);}
 }
 
 function renderCoStep(){
-  const items=cartItems();const free=subtotal()>=900;
   if(coStep===3){
     document.getElementById('coProgress').style.display='none';
     document.getElementById('coBody').innerHTML=`<div class="success-page">
-      <div class="success-icon">🖤</div>
+      <div class="success-icon">🤎</div>
       <h2 class="success-title">¡Gracias por tu<br><span>pedido, reina!</span></h2>
-      <p class="success-sub">Tu pedido ha sido confirmado. Recibirás un correo con los detalles y el número de seguimiento cuando sea enviado.</p>
+      <p class="success-sub">Tu pedido ha sido confirmado. Recibirás un correo con los detalles y seguimiento cuando sea enviado.</p>
       <div class="order-num">Pedido #MG-${Math.floor(100000+Math.random()*900000)}</div><br><br>
-      <button class="btn-gold" onclick="cart={};updateCartUI();showPage('home')">Seguir comprando →</button>
+      <button class="btn-main" onclick="cart={};updateCartUI();showPage('home')">Seguir comprando →</button>
     </div>`;
     return;
   }
   document.getElementById('coProgress').style.display='flex';
-  const step1Form=`<p class="co-title">Información de envío</p>
+  const free=subtotal()>=900;
+  const step1=`<p class="co-title">Información de envío</p>
     <div class="fr">
       <div class="fg"><label>Nombre</label><input id="f-nombre" placeholder="María" value="${coFormData.nombre||''}"></div>
       <div class="fg"><label>Apellido</label><input id="f-apellido" placeholder="González" value="${coFormData.apellido||''}"></div>
@@ -519,15 +542,15 @@ function renderCoStep(){
       <div class="fg"><label>Estado</label><select id="f-estado"><option value="">Selecciona...</option>${estados.map(e=>`<option${coFormData.estado===e?' selected':''}>${e}</option>`).join('')}</select></div>
     </div>
     <p class="co-title" style="margin-top:1.5rem">Método de envío</p>
-    <div class="ship-opts">${free?`<div class="ship-opt selected"><div class="ship-radio on"></div><div class="ship-info"><div class="ship-name">Envío gratis</div><div class="ship-desc">5-7 días · Tu compra supera $900 MXN</div></div><span class="ship-price">Gratis</span></div>`:`
+    <div class="ship-opts">${free?`<div class="ship-opt selected"><div class="ship-radio on"></div><div class="ship-info"><div class="ship-name">Envío gratis</div><div class="ship-desc">5-7 días · Compra supera $900 MXN</div></div><span class="ship-price">Gratis</span></div>`:`
     <div class="ship-opt${coShipping==='standard'?' selected':''}" onclick="selectShip('standard')"><div class="ship-radio${coShipping==='standard'?' on':''}"></div><div class="ship-info"><div class="ship-name">Envío estándar</div><div class="ship-desc">5-7 días hábiles · Todo México</div></div><span class="ship-price">$99 MXN</span></div>
     <div class="ship-opt${coShipping==='express'?' selected':''}" onclick="selectShip('express')"><div class="ship-radio${coShipping==='express'?' on':''}"></div><div class="ship-info"><div class="ship-name">Envío express</div><div class="ship-desc">2-3 días hábiles · Todo México</div></div><span class="ship-price">$199 MXN</span></div>`}
     </div>
     <button class="btn-next" onclick="goToStep2()">Continuar al pago →</button>`;
 
-  const step2Form=`<p class="co-title">Método de pago</p>
-    <div style="background:#111;border:0.5px solid var(--dim);padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:11px;color:var(--muted);font-family:sans-serif">
-      <i class="ti ti-lock" style="color:var(--gold)"></i> Pago seguro cifrado · Integración MercadoPago próximamente
+  const step2=`<p class="co-title">Método de pago</p>
+    <div style="background:var(--bg3);border:0.5px solid var(--dim);padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:13px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300">
+      <i class="ti ti-lock" style="color:var(--accent)"></i> Pago seguro cifrado · Integración MercadoPago próximamente
     </div>
     <div class="fg"><label>Número de tarjeta</label><input type="text" placeholder="4242 4242 4242 4242" maxlength="19" oninput="this.value=this.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim()"></div>
     <div class="fg"><label>Nombre en la tarjeta</label><input type="text" placeholder="${coFormData.nombre||'María'} ${coFormData.apellido||'González'}"></div>
@@ -535,33 +558,28 @@ function renderCoStep(){
       <div class="fg"><label>Vencimiento</label><input type="text" placeholder="MM/AA" maxlength="5"></div>
       <div class="fg"><label>CVV</label><input type="text" placeholder="123" maxlength="4"></div>
     </div>
-    <div style="background:#0d0d0d;border:0.5px solid var(--dim);padding:1rem;margin:1.5rem 0;font-size:11px;font-family:sans-serif;color:var(--muted)">
-      <strong style="color:var(--text);display:block;margin-bottom:.5rem">Dirección de envío:</strong>
-      ${coFormData.dir}, ${coFormData.col}<br>${coFormData.ciudad}, ${coFormData.estado} CP ${coFormData.cp}
+    <div style="background:var(--bg3);border:0.5px solid var(--dim);padding:1rem;margin:1.5rem 0;font-size:13px;font-family:'Jost',sans-serif;color:var(--muted);font-weight:300">
+      <strong style="color:var(--text);display:block;margin-bottom:.5rem;font-weight:400">Dirección de envío confirmada:</strong>
+      ${coFormData.dir||''}, ${coFormData.col||''}<br>${coFormData.ciudad||''}, ${coFormData.estado||''} CP ${coFormData.cp||''}
     </div>
     <div><button class="btn-bk" onclick="coStep=1;renderCoProgress();renderCoStep()">← Volver</button>
-    <button class="btn-next" style="width:auto;padding:.9rem 2.5rem" onclick="coStep=3;renderCoProgress();renderCoStep()">Confirmar pedido →</button></div>`;
+    <button class="btn-next" style="width:auto;padding:.9rem 2.5rem;margin-top:0" onclick="coStep=3;renderCoProgress();renderCoStep()">Confirmar pedido →</button></div>`;
 
   document.getElementById('coBody').innerHTML=`<div class="co-layout">
-    <div class="co-form">${coStep===1?step1Form:step2Form}</div>
-    <div class="co-summary">${buildCoSummaryInner(items,free)}</div>
+    <div class="co-form">${coStep===1?step1:step2}</div>
+    <div class="co-summary">${buildSummaryHTML()}</div>
   </div>`;
 }
 
-function selectShip(type){coShipping=type;renderCoStep();}
-
+function selectShip(t){coShipping=t;renderCoStep();}
 function goToStep2(){
-  ['nombre','apellido','email','dir','cp','ciudad','estado'].forEach(f=>{
-    const el=document.getElementById('f-'+f);if(el)coFormData[f]=el.value;
-  });
-  ['tel','col'].forEach(f=>{const el=document.getElementById('f-'+f);if(el)coFormData[f]=el.value;});
+  ['nombre','apellido','email','tel','dir','col','cp','ciudad','estado'].forEach(f=>{const el=document.getElementById('f-'+f);if(el)coFormData[f]=el.value;});
   const req=['nombre','apellido','email','dir','cp','ciudad','estado'];
   const missing=req.filter(f=>!coFormData[f]||coFormData[f]==='');
-  if(missing.length){missing.forEach(f=>{const el=document.getElementById('f-'+f);if(el){el.style.borderColor='#c0392b';setTimeout(()=>el.style.borderColor='',2000);}});return;}
+  if(missing.length){missing.forEach(f=>{const el=document.getElementById('f-'+f);if(el){el.style.borderColor='#b05050';setTimeout(()=>el.style.borderColor='',2000);}});return;}
   coStep=2;renderCoProgress();renderCoStep();window.scrollTo(0,0);
 }
 
-// INIT
 renderCatalog();
 updateCartUI();
 </script>
